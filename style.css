@@ -1,0 +1,354 @@
+body {
+    background-color: pink;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+}
+
+.cake {
+    position: relative;
+    width: 200px;
+    cursor: pointer;
+    padding-top: 30px;
+}
+
+.layer {
+    position: relative;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.layer1 {
+    background: linear-gradient(to right, #ff9999, #ffb3b3);
+    height: 60px;
+    width: 200px;
+    position: relative;
+}
+
+.layer2 {
+    background: linear-gradient(to right, #ffb3b3, #ffcccc);
+    height: 55px;
+    width: 170px;
+    margin: -20px auto 0;
+}
+
+.layer3 {
+    background: linear-gradient(to right, #ffcccc, #ffe6e6);
+    height: 50px;
+    width: 140px;
+    margin: -20px auto 0;
+}
+
+.candle {
+    width: 10px;
+    height: 35px;
+    background: linear-gradient(to right, #f0f0f0, #fff, #f0f0f0);
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 3px;
+    box-shadow: 0 0 3px rgba(0,0,0,0.1);
+}
+
+.candle::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(orange, yellow);
+    border-radius: 50% 50% 0 0;
+    top: -15px;
+    left: 0;
+    animation: flicker 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes flicker {
+    0% {
+        transform: scaleY(1) scaleX(1);
+        opacity: 0.8;
+    }
+    25% {
+        transform: scaleY(1.1) scaleX(0.9);
+        opacity: 0.9;
+    }
+    50% {
+        transform: scaleY(0.95) scaleX(1.05);
+        opacity: 1;
+    }
+    75% {
+        transform: scaleY(1.05) scaleX(0.95);
+        opacity: 0.9;
+    }
+    100% {
+        transform: scaleY(1) scaleX(1);
+        opacity: 0.8;
+    }
+}
+
+.wishes-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+}
+
+.wishes-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    position: relative;
+    text-align: center;
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+h2 {
+    color: #ff6666;
+}
+
+p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.fireworks {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.fireworks::before,
+.fireworks::after {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    box-shadow: 
+        -120px -218.66667px #ff0000, /* 红色 */
+        248px -16.66667px #00ff00,   /* 绿色 */
+        190px 16.33333px #0000ff,    /* 蓝色 */
+        -113px -308.66667px #ffff00, /* 黄色 */
+        -109px -287.66667px #ff00ff, /* 紫色 */
+        -50px -313.66667px #00ffff,  /* 青色 */
+        226px -31.66667px #ff8c00,   /* 橙色 */
+        180px -351.66667px #ff1493,  /* 深粉色 */
+        -12px -338.66667px #9400d3,  /* 紫罗兰 */
+        220px -388.66667px #7fff00,  /* 青柠色 */
+        -60px -128.66667px #ff4500,  /* 橙红色 */
+        180px -251.66667px #00fa9a,  /* 春绿色 */
+        -120px -138.66667px #ffd700, /* 金色 */
+        120px -208.66667px #ff69b4,  /* 热粉色 */
+        -50px -87.66667px #4169e1,   /* 皇家蓝 */
+        -150px -213.66667px #32cd32, /* 酸橙绿 */
+        326px -131.66667px #ba55d3,  /* 兰花紫 */
+        280px -251.66667px #ff6347,  /* 番茄红 */
+        -112px -238.66667px #40e0d0, /* 绿松石 */
+        420px -288.66667px #ffff00;  /* 黄色 */
+    animation: fireworks 6s linear infinite;
+}
+
+/* 添加第三个礼花层 */
+.fireworks::before {
+    animation-delay: 0.5s;
+}
+
+.fireworks::after {
+    animation-delay: 1.25s;
+}
+
+/* 添加更多礼花层 */
+.fireworks-2::before,
+.fireworks-2::after {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    box-shadow: 
+        120px 118.66667px #ff1493,   /* 深粉色 */
+        -248px 216.66667px #00ff00,  /* 绿色 */
+        -190px 116.33333px #4169e1,  /* 皇家蓝 */
+        113px 208.66667px #ffd700,   /* 金色 */
+        209px 187.66667px #ff4500,   /* 橙红色 */
+        150px 213.66667px #9400d3,   /* 紫罗兰 */
+        -226px 231.66667px #00ffff,  /* 青色 */
+        -180px 151.66667px #32cd32,  /* 酸橙绿 */
+        112px 238.66667px #ff69b4,   /* 热粉色 */
+        -220px 188.66667px #ba55d3;  /* 兰花紫 */
+    animation: fireworks 8s linear infinite;
+}
+
+.fireworks-2::before {
+    animation-delay: 1.75s;
+}
+
+.fireworks-2::after {
+    animation-delay: 2.5s;
+}
+
+@keyframes fireworks {
+    0% {
+        transform: scale(0) rotate(0deg) translate3d(0, 0, 0);
+        opacity: 1;
+        filter: brightness(1.5);
+    }
+    100% {
+        transform: scale(8) rotate(360deg) translate3d(0, 0, 0);
+        opacity: 0;
+        filter: brightness(1.2);
+    }
+}
+
+/* 添加奶油装�� */
+.layer::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    width: 100%;
+    height: 20px;
+    background: repeating-radial-gradient(
+        circle at 10px 5px,
+        #fff,
+        #fff 4px,
+        transparent 5px,
+        transparent 10px
+    );
+}
+
+/* 添加糖果装饰 */
+.layer::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    width: 90%;
+    height: 10px;
+    background: repeating-linear-gradient(
+        90deg,
+        #ff99cc,
+        #ff99cc 5px,
+        transparent 5px,
+        transparent 15px
+    );
+}
+
+/* 添加巧克力滴落效果 */
+.chocolate-drip {
+    position: absolute;
+    top: -8px;
+    width: 100%;
+    height: 15px;
+    background: repeating-radial-gradient(
+        circle at 10px 0,
+        #993333,
+        #993333 8px,
+        transparent 8px,
+        transparent 20px
+    );
+}
+
+/* 为每层添加阴影效果 */
+.layer1, .layer2, .layer3 {
+    box-shadow: 
+        inset -5px -5px 10px rgba(0,0,0,0.1),
+        0 5px 10px rgba(0,0,0,0.1);
+}
+
+/* 添加小装饰点 */
+.sprinkles {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #ff3366;
+    border-radius: 50%;
+    box-shadow: 
+        20px 10px 0 #ffcc00,
+        -20px -10px 0 #ff99cc,
+        40px -5px 0 #ff6600,
+        -40px 5px 0 #ff3366,
+        60px 0 0 #ffcc00,
+        -60px 0 0 #ff99cc;
+}
+
+.layer1 .sprinkles { top: 20px; }
+.layer2 .sprinkles { top: 15px; }
+.layer3 .sprinkles { top: 10px; }
+
+/* 欢迎文字样式 */
+.welcome-text {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: pink;
+    z-index: 1000;
+    transition: opacity 1s ease;
+}
+
+.welcome-text span {
+    font-size: 4em;
+    font-weight: bold;
+    color: #ff3366;
+    margin: 0 10px;
+    animation: bounce 1s ease infinite;
+    display: inline-block;
+    text-shadow: 2px 2px 8px rgba(255,255,255,0.5);
+}
+
+/* 为每个字设置不同的动画延迟 */
+.welcome-text span:nth-child(1) { animation-delay: 0.1s; }
+.welcome-text span:nth-child(2) { animation-delay: 0.2s; }
+.welcome-text span:nth-child(3) { animation-delay: 0.3s; }
+.welcome-text span:nth-child(4) { animation-delay: 0.4s; }
+.welcome-text span:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.main-content {
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+/* 确保主内容在欢迎文字消失后可见 */
+.main-content.visible {
+    opacity: 1;
+}

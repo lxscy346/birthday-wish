@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>生日快乐！</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="welcome-text">
+        <span>生</span>
+        <span>日</span>
+        <span>快</span>
+        <span>乐</span>
+        <span>！</span>
+    </div>
+    
+    <div class="main-content" style="display: none;">
+        <div class="fireworks"></div>
+        <div class="fireworks-2"></div>
+        <div class="container">
+            <div class="cake" onclick="showWishes()">
+                <div class="candle"></div>
+                <div class="layer layer3">
+                    <div class="chocolate-drip"></div>
+                    <div class="sprinkles"></div>
+                </div>
+                <div class="layer layer2">
+                    <div class="chocolate-drip"></div>
+                    <div class="sprinkles"></div>
+                </div>
+                <div class="layer layer1">
+                    <div class="chocolate-drip"></div>
+                    <div class="sprinkles"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="wishes" class="wishes-modal">
+        <div class="wishes-content">
+            <span class="close" onclick="closeWishes()">&times;</span>
+            <h2>生日快乐！我的乖乖🎉</h2>
+            <p>祝福你平平安安快快乐乐</p>
+            <p>祝福你天天开心没有烦恼</p>
+            <p>你的刘显宝宝</p>
+        </div>
+    </div>
+
+    <script>
+        function showWishes() {
+            document.getElementById("wishes").style.display = "block";
+        }
+
+        function closeWishes() {
+            document.getElementById("wishes").style.display = "none";
+        }
+
+        window.onload = function() {
+            // 3秒后隐藏欢迎文字，显示主内容
+            setTimeout(function() {
+                document.querySelector('.welcome-text').style.opacity = '0';
+                setTimeout(function() {
+                    document.querySelector('.welcome-text').style.display = 'none';
+                    document.querySelector('.main-content').style.display = 'block';
+                    document.querySelector('.main-content').style.opacity = '1';
+                }, 1000);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
